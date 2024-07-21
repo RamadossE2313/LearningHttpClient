@@ -27,7 +27,7 @@ namespace LearningHttpClient.Controllers
         {
             string endpoint = "/todos";
             var httpClient = _httpClientFactory.CreateClient("todos");
-            var response = await httpClient.GetAsync(endpoint);
+            var response = await httpClient.GetAsync(endpoint, HttpCompletionOption.ResponseHeadersRead);
             response.EnsureSuccessStatusCode();
 
             var todos = await response.Content.ReadFromJsonAsync<IEnumerable<Todo>>(_jsonSerializerOptions);
